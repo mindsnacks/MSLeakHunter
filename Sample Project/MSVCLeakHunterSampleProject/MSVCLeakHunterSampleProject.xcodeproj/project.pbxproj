@@ -1,0 +1,326 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D0E17BBF163380CD0045A2E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E17BBE163380CD0045A2E4 /* UIKit.framework */; };
+		D0E17BC1163380CD0045A2E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E17BC0163380CD0045A2E4 /* Foundation.framework */; };
+		D0E17BC3163380CD0045A2E4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E17BC2163380CD0045A2E4 /* CoreGraphics.framework */; };
+		D0E17BC9163380CD0045A2E4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0E17BC7163380CD0045A2E4 /* InfoPlist.strings */; };
+		D0E17BCB163380CD0045A2E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E17BCA163380CD0045A2E4 /* main.m */; };
+		D0E17BCF163380CD0045A2E4 /* MSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E17BCE163380CD0045A2E4 /* MSAppDelegate.m */; };
+		D0E17BD1163380CD0045A2E4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D0E17BD0163380CD0045A2E4 /* Default.png */; };
+		D0E17BD3163380CD0045A2E4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0E17BD2163380CD0045A2E4 /* Default@2x.png */; };
+		D0E17BD5163380CD0045A2E4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0E17BD4163380CD0045A2E4 /* Default-568h@2x.png */; };
+		D0E17BDD163380E60045A2E4 /* MSVCLeakHunter.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E17BDC163380E60045A2E4 /* MSVCLeakHunter.m */; };
+		D0E17BE2163381430045A2E4 /* MSMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E17BE0163381430045A2E4 /* MSMenuVC.m */; };
+		D0E17BE3163381430045A2E4 /* MSMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0E17BE1163381430045A2E4 /* MSMenuVC.xib */; };
+		D0E17BE7163381AA0045A2E4 /* MSOKVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E17BE5163381AA0045A2E4 /* MSOKVC.m */; };
+		D0E17BE8163381AA0045A2E4 /* MSOKVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0E17BE6163381AA0045A2E4 /* MSOKVC.xib */; };
+		D0E17BEC163381EE0045A2E4 /* MSLeakingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E17BEA163381EE0045A2E4 /* MSLeakingVC.m */; };
+		D0E17BED163381EE0045A2E4 /* MSLeakingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0E17BEB163381EE0045A2E4 /* MSLeakingVC.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D0E17BBA163380CD0045A2E4 /* MSVCLeakHunterSampleProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MSVCLeakHunterSampleProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0E17BBE163380CD0045A2E4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D0E17BC0163380CD0045A2E4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D0E17BC2163380CD0045A2E4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D0E17BC6163380CD0045A2E4 /* MSVCLeakHunterSampleProject-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MSVCLeakHunterSampleProject-Info.plist"; sourceTree = "<group>"; };
+		D0E17BC8163380CD0045A2E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D0E17BCA163380CD0045A2E4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D0E17BCC163380CD0045A2E4 /* MSVCLeakHunterSampleProject-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MSVCLeakHunterSampleProject-Prefix.pch"; sourceTree = "<group>"; };
+		D0E17BCD163380CD0045A2E4 /* MSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSAppDelegate.h; sourceTree = "<group>"; };
+		D0E17BCE163380CD0045A2E4 /* MSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSAppDelegate.m; sourceTree = "<group>"; };
+		D0E17BD0163380CD0045A2E4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		D0E17BD2163380CD0045A2E4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		D0E17BD4163380CD0045A2E4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		D0E17BDB163380E60045A2E4 /* MSVCLeakHunter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSVCLeakHunter.h; path = ../../../MSVCLeakHunter.h; sourceTree = "<group>"; };
+		D0E17BDC163380E60045A2E4 /* MSVCLeakHunter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSVCLeakHunter.m; path = ../../../MSVCLeakHunter.m; sourceTree = "<group>"; };
+		D0E17BDF163381430045A2E4 /* MSMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSMenuVC.h; sourceTree = "<group>"; };
+		D0E17BE0163381430045A2E4 /* MSMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSMenuVC.m; sourceTree = "<group>"; };
+		D0E17BE1163381430045A2E4 /* MSMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSMenuVC.xib; sourceTree = "<group>"; };
+		D0E17BE4163381AA0045A2E4 /* MSOKVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSOKVC.h; sourceTree = "<group>"; };
+		D0E17BE5163381AA0045A2E4 /* MSOKVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSOKVC.m; sourceTree = "<group>"; };
+		D0E17BE6163381AA0045A2E4 /* MSOKVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSOKVC.xib; sourceTree = "<group>"; };
+		D0E17BE9163381EE0045A2E4 /* MSLeakingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSLeakingVC.h; sourceTree = "<group>"; };
+		D0E17BEA163381EE0045A2E4 /* MSLeakingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSLeakingVC.m; sourceTree = "<group>"; };
+		D0E17BEB163381EE0045A2E4 /* MSLeakingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSLeakingVC.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D0E17BB7163380CD0045A2E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0E17BBF163380CD0045A2E4 /* UIKit.framework in Frameworks */,
+				D0E17BC1163380CD0045A2E4 /* Foundation.framework in Frameworks */,
+				D0E17BC3163380CD0045A2E4 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D0E17BAF163380CD0045A2E4 = {
+			isa = PBXGroup;
+			children = (
+				D0E17BC4163380CD0045A2E4 /* MSVCLeakHunterSampleProject */,
+				D0E17BBD163380CD0045A2E4 /* Frameworks */,
+				D0E17BBB163380CD0045A2E4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D0E17BBB163380CD0045A2E4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0E17BBA163380CD0045A2E4 /* MSVCLeakHunterSampleProject.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0E17BBD163380CD0045A2E4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D0E17BBE163380CD0045A2E4 /* UIKit.framework */,
+				D0E17BC0163380CD0045A2E4 /* Foundation.framework */,
+				D0E17BC2163380CD0045A2E4 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0E17BC4163380CD0045A2E4 /* MSVCLeakHunterSampleProject */ = {
+			isa = PBXGroup;
+			children = (
+				D0E17BCD163380CD0045A2E4 /* MSAppDelegate.h */,
+				D0E17BCE163380CD0045A2E4 /* MSAppDelegate.m */,
+				D0E17BDB163380E60045A2E4 /* MSVCLeakHunter.h */,
+				D0E17BDC163380E60045A2E4 /* MSVCLeakHunter.m */,
+				D0E17BDE163381240045A2E4 /* ViewControllers */,
+				D0E17BC5163380CD0045A2E4 /* Supporting Files */,
+			);
+			path = MSVCLeakHunterSampleProject;
+			sourceTree = "<group>";
+		};
+		D0E17BC5163380CD0045A2E4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D0E17BC6163380CD0045A2E4 /* MSVCLeakHunterSampleProject-Info.plist */,
+				D0E17BC7163380CD0045A2E4 /* InfoPlist.strings */,
+				D0E17BCA163380CD0045A2E4 /* main.m */,
+				D0E17BCC163380CD0045A2E4 /* MSVCLeakHunterSampleProject-Prefix.pch */,
+				D0E17BD0163380CD0045A2E4 /* Default.png */,
+				D0E17BD2163380CD0045A2E4 /* Default@2x.png */,
+				D0E17BD4163380CD0045A2E4 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D0E17BDE163381240045A2E4 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D0E17BDF163381430045A2E4 /* MSMenuVC.h */,
+				D0E17BE0163381430045A2E4 /* MSMenuVC.m */,
+				D0E17BE1163381430045A2E4 /* MSMenuVC.xib */,
+				D0E17BE4163381AA0045A2E4 /* MSOKVC.h */,
+				D0E17BE5163381AA0045A2E4 /* MSOKVC.m */,
+				D0E17BE6163381AA0045A2E4 /* MSOKVC.xib */,
+				D0E17BE9163381EE0045A2E4 /* MSLeakingVC.h */,
+				D0E17BEA163381EE0045A2E4 /* MSLeakingVC.m */,
+				D0E17BEB163381EE0045A2E4 /* MSLeakingVC.xib */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D0E17BB9163380CD0045A2E4 /* MSVCLeakHunterSampleProject */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0E17BD8163380CD0045A2E4 /* Build configuration list for PBXNativeTarget "MSVCLeakHunterSampleProject" */;
+			buildPhases = (
+				D0E17BB6163380CD0045A2E4 /* Sources */,
+				D0E17BB7163380CD0045A2E4 /* Frameworks */,
+				D0E17BB8163380CD0045A2E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MSVCLeakHunterSampleProject;
+			productName = MSVCLeakHunterSampleProject;
+			productReference = D0E17BBA163380CD0045A2E4 /* MSVCLeakHunterSampleProject.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D0E17BB1163380CD0045A2E4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MS;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = MindSnacks;
+			};
+			buildConfigurationList = D0E17BB4163380CD0045A2E4 /* Build configuration list for PBXProject "MSVCLeakHunterSampleProject" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D0E17BAF163380CD0045A2E4;
+			productRefGroup = D0E17BBB163380CD0045A2E4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D0E17BB9163380CD0045A2E4 /* MSVCLeakHunterSampleProject */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D0E17BB8163380CD0045A2E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0E17BC9163380CD0045A2E4 /* InfoPlist.strings in Resources */,
+				D0E17BD1163380CD0045A2E4 /* Default.png in Resources */,
+				D0E17BD3163380CD0045A2E4 /* Default@2x.png in Resources */,
+				D0E17BD5163380CD0045A2E4 /* Default-568h@2x.png in Resources */,
+				D0E17BE3163381430045A2E4 /* MSMenuVC.xib in Resources */,
+				D0E17BE8163381AA0045A2E4 /* MSOKVC.xib in Resources */,
+				D0E17BED163381EE0045A2E4 /* MSLeakingVC.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D0E17BB6163380CD0045A2E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0E17BCB163380CD0045A2E4 /* main.m in Sources */,
+				D0E17BCF163380CD0045A2E4 /* MSAppDelegate.m in Sources */,
+				D0E17BDD163380E60045A2E4 /* MSVCLeakHunter.m in Sources */,
+				D0E17BE2163381430045A2E4 /* MSMenuVC.m in Sources */,
+				D0E17BE7163381AA0045A2E4 /* MSOKVC.m in Sources */,
+				D0E17BEC163381EE0045A2E4 /* MSLeakingVC.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D0E17BC7163380CD0045A2E4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0E17BC8163380CD0045A2E4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D0E17BD6163380CD0045A2E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D0E17BD7163380CD0045A2E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D0E17BD9163380CD0045A2E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MSVCLeakHunterSampleProject/MSVCLeakHunterSampleProject-Prefix.pch";
+				INFOPLIST_FILE = "MSVCLeakHunterSampleProject/MSVCLeakHunterSampleProject-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D0E17BDA163380CD0045A2E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MSVCLeakHunterSampleProject/MSVCLeakHunterSampleProject-Prefix.pch";
+				INFOPLIST_FILE = "MSVCLeakHunterSampleProject/MSVCLeakHunterSampleProject-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D0E17BB4163380CD0045A2E4 /* Build configuration list for PBXProject "MSVCLeakHunterSampleProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0E17BD6163380CD0045A2E4 /* Debug */,
+				D0E17BD7163380CD0045A2E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0E17BD8163380CD0045A2E4 /* Build configuration list for PBXNativeTarget "MSVCLeakHunterSampleProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0E17BD9163380CD0045A2E4 /* Debug */,
+				D0E17BDA163380CD0045A2E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D0E17BB1163380CD0045A2E4 /* Project object */;
+}
