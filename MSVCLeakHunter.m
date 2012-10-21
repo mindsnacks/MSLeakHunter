@@ -60,22 +60,22 @@
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [self swizzleMethod:@selector(viewDidAppear:)
-                 withMethod:@selector(_msvcLeakHunter_viewDidAppear:)];
+        [self swizzleUIViewControllerSelector:@selector(viewDidAppear:)
+                                 withSelector:@selector(_msvcLeakHunter_viewDidAppear:)];
 
-        [self swizzleMethod:@selector(viewDidDisappear:)
-                 withMethod:@selector(_msvcLeakHunter_viewDidDisappear:)];
+        [self swizzleUIViewControllerSelector:@selector(viewDidDisappear:)
+                                 withSelector:@selector(_msvcLeakHunter_viewDidDisappear:)];
 
-        [self swizzleMethod:NSSelectorFromString(@"dealloc")
-                 withMethod:@selector(_msvcLeakHunter_dealloc)];
+        [self swizzleUIViewControllerSelector:NSSelectorFromString(@"dealloc")
+                                 withSelector:@selector(_msvcLeakHunter_dealloc)];
     });
 
 }
 
 #pragma mark - Swizzling
 
-+ (void)swizzleMethod:(SEL)originalSelector
-           withMethod:(SEL)newSelector
++ (void)swizzleUIViewControllerSelector:(SEL)originalSelector
+                           withSelector:(SEL)newSelector
 {
     Class class = [UIViewController class];
 
