@@ -30,7 +30,7 @@
  * This helps you track down the lyfe cycle of your view controllers.
  * `MSVCLeakHunter_ENABLED` has to be set to 1 for this to work too.
  */
-#define MSVCLeakHunter_EnableUIViewControllerLog 1
+#define MSVCLeakHunter_EnableUIViewControllerLog 0
 
 /**
  * @discussion if a view controller hasn't been deallocated after this time after it disappeared from screen, it's considered "pottentially leaked", and a message in the log will be printed. 
