@@ -66,7 +66,7 @@
         [self swizzleMethod:@selector(viewDidDisappear:)
                  withMethod:@selector(_msvcLeakHunter_viewDidDisappear:)];
 
-        [self swizzleMethod:@selector(dealloc)
+        [self swizzleMethod:NSSelectorFromString(@"dealloc")
                  withMethod:@selector(_msvcLeakHunter_dealloc)];
     });
 
