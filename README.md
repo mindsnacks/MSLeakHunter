@@ -34,7 +34,7 @@ In the case where you have something like a navigation controller that is shown 
 
 # License
 
-Copyright 2012 Javier Soto (javi@mindsnacks.com)
+Copyright 2012 MindSnacks
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
