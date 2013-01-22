@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "MSVCLeakHunter"
-  s.version      = "0.0.1"
+  s.version      = "1.0.0"
   s.summary      = "Simple and easy tool to discover View Controllers that are not being deallocated when you expect them to."
   s.homepage     = "https://github.com/mindsnacks/MSVCLeakHunter"
   s.license      = { :type => 'Apache License, Version 2.0', :file => 'LICENSE' }
