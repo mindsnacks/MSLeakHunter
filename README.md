@@ -5,11 +5,13 @@ Simple and easy tool to discover View Controllers that are not being deallocated
 
 This is very common with retain cycles using blocks, and it's very tricky sometimes to realize that some view controller is never getting deallocated, because they don't show up as leaks when using Instruments.
 
-# Instalation
+# Installation
 
 - Add ```MSVCLeakHunter.h``` and ```MSVCLeakHunter.m``` to the Xcode project.
 - Place a call to ```+[MSVCLeakHunter install]``` somewhere during app initialization (e.g. the ```applicationDidFinishLaunchingWithOptions:``` method of your app delegate.)
 - Make sure ```MSVCLeakHunter_ENABLED``` is set to 1 in ```MSVCLeakHunter.h```
+
+Or install via Cocoapods: `pod 'MSVCLeakHunter'`
 
 # What it looks like
 
