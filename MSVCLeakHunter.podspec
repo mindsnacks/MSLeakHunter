@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/mindsnacks/MSVCLeakHunter"
   s.license      = { :type => 'Apache License, Version 2.0', :file => 'LICENSE' }
   s.author       = { "Javier Soto" => "javi@mindsnacks.com" }
-  s.source       = { :git => "https://github.com/mindsnacks/MSVCLeakHunter.git", :commit => "043517b52b63ac06b4e92557b248b08ba7456e64" }
+  s.source       = { :git => "https://github.com/mindsnacks/MSVCLeakHunter.git", :tag => "1.0.0" }
   s.platform     = :ios
   s.ios.deployment_target = '5.0'
   s.source_files = 'MSVCLeakHunter.{h,m}'
