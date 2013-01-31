@@ -1,12 +1,14 @@
 MSLeakHunter
 ==============
 
-Series of tools to help you find and debug objects that are leaking in your iOS apps.
+### Series of tools to help you find and debug objects that are leaking in your iOS apps.
 
 There are very common cases where objects may be leaking (not being deallocated when you expect them to) and instruments fails to detect this. One particular example is due to retain cycles using blocks, and it's very tricky sometimes to realize that some object isn't being deallocated.
 
-**MSLeakHunter** provides a generic interface to construct "leak hunter" objects, that are in charge of monitoring the allocation and deallocation of objects of a particular class. In this repo, two particular implementations are provided: `MSViewControllerLeakHunter` and `MSViewLeakHunter` (for `UIViewController` and `UIView` instances respectively). However, you can create as many leak hunters as you wish. The only thing they need is that the object they're expecting to be deallocated to have some method that gets called before this deallocation is supposed to happen.
-For example, `UIViewController` will get a -viewDidDisappear:` call some time before its deallocation. What `MSLeakHunter` allows you to do, is to keep track of that object, and in case `-dealloc` isn't called some time  after that, it's considered pottentially leaked and it's logged in the console.
+**MSLeakHunter** provides a generic interface to construct "leak hunter" objects, that are in charge of monitoring the allocation and deallocation of objects of a particular class. In this repo, two particular implementations are provided: `MSViewControllerLeakHunter` and `MSViewLeakHunter` (for `UIViewController` and `UIView` instances respectively).
+
+However, you can create as many leak hunters as you wish. The only thing they need is that the object they're expecting to be deallocated to have some method that gets called before this deallocation is supposed to happen.
+For example, `UIViewController` will get a `-viewDidDisappear:` call some time before its deallocation. What `MSLeakHunter` allows you to do, is to keep track of that object, and in case `-dealloc` isn't called some time  after that, it's considered pottentially leaked and it's logged in the console.
 
 The implementation is pretty cheap, so it shouldn't hurt the performance of any application, but it's advised to keep this code disabled (through the `MSLeakHunter_ENABLED` macro) when shipping an app.
 
@@ -14,8 +16,9 @@ For more instructions on how to create other leak hunter objects, refer to the `
 
 # Installation
 
-- Add ```MSVCLeakHunter.{h,m}``` to the Xcode project.
+- Add ```MSLeakHunter.{h,m}``` to the Xcode project.
 - Somewhere during app initialization (e.g. the ```applicationDidFinishLaunchingWithOptions:``` method of your app delegate.), install the leak hunters that you want to enable:
+
 ```objc
 [MSLeakHunter installLeakHunter:[MSViewControllerLeakHunter class]];
 ```
@@ -37,6 +40,8 @@ Using it is as simple as calling this method declared in `MSLeakHunterRetainBrea
 ms_enableMemoryManagementMethodBreakpointsOnObject(object);
 ```
 
+After this call, the debugger will stop the application whenever `-retain`, `-release`, `-autorelease`, or `-dealloc` is called on that object. If you go up the stack, you will be able to see who caused the call to those methods and hopefully that will help you debug memory managament problems in your app.
+
 * Note: `MSLeakHunterRetainBreakpointsHelper.m` has to be compiled without ARC. If your project uses ARC, refer to [this tutorial](http://maniacdev.com/2012/01/easily-get-non-arc-enabled-open-source-libraries-working-in-arc-enabled-projects/) to know how to disable ARC only for that file.
 
 # Compatibility
@@ -45,13 +50,13 @@ ms_enableMemoryManagementMethodBreakpointsOnObject(object);
 
 # Caveats of the leak hunter implementations
 
-If you look at the implementation in ```MSViewControllerLeakHunter.m```, it's very naive. All it does is swizzle some methods for every UIViewController instance to discover when a view controller disappear from screen (*it gets a ```viewDidDisappear:``` call*), but isn't deallocated after a certain period of time.
+If you look at the implementation in ```MSViewControllerLeakHunter.m```, it's very naive. All it does is swizzle some methods for every UIViewController instance to discover when a view controller disappear from screen( *it gets a ```viewDidDisappear:``` call* ), but isn't deallocated after a certain period of time.
 
 If this happens, it doesn't guarantee 100% that the view controller leaked. For example, if it's inside a ```UITabBarController```, it may disapepar when you select another tab, but it's still retained by the tabbar, and it hasn't leaked.
 
 But it will help you discover, for example, view controllers that you push onto a navigation controller stack, and aren't deallocated when you pop them tapping on the back button.
 
-In the case where you have something like a navigation controller that is shown modally, and then the whole stack goes away when the modal is closed, you may want to tweak the value of ```kMSVCLeakHunterDisappearAndDeallocateMaxInterval``` (*see ```MSViewControllerLeakHunter.h```*) to give ```MSViewCOntrollerLeakHunter``` enough margin to avoid a false positive. Otherwise, you may see a log for a possible leak of the controllers at the bottom of the stack if the modal takes longer to be closed.
+In the case where you have something like a navigation controller that is shown modally, and then the whole stack goes away when the modal is closed, you may want to tweak the value of ```kMSVCLeakHunterDisappearAndDeallocateMaxInterval``` ( *see ```MSViewControllerLeakHunter.h```* ) to give ```MSViewCOntrollerLeakHunter``` enough margin to avoid a false positive. Otherwise, you may see a log for a possible leak of the controllers at the bottom of the stack if the modal takes longer to be closed.
 
 # License
 
