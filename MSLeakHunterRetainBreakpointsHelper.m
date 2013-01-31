@@ -79,28 +79,28 @@ static bool AmIBeingDebugged(void)
 
 #pragma mark -
 
-static id leak_retain(id self, SEL _cmd)
+static id ms_retain(id self, SEL _cmd)
 {
     DEBUGGER();
 
     CALL_AND_RETURN_PARENT_IMP(self, _cmd);
 }
 
-static void leak_release(id self, SEL _cmd)
+static void ms_release(id self, SEL _cmd)
 {
     DEBUGGER();
 
     CALL_PARENT_IMP(self, _cmd);
 }
 
-static id leak_autorelease(id self, SEL _cmd)
+static id ms_autorelease(id self, SEL _cmd)
 {
     DEBUGGER();
 
     CALL_AND_RETURN_PARENT_IMP(self, _cmd);
 }
 
-static void leak_dealloc(id self, SEL _cmd)
+static void ms_dealloc(id self, SEL _cmd)
 {
     DEBUGGER();
 
@@ -121,7 +121,7 @@ static __inline__ NSString *ms_dyanmicSubclassNameForObject(id object)
     return [NSString stringWithFormat:@"%@%@", kDynamicSubclassPrefix, NSStringFromClass([object class])];
 }
 
-void ms_stopOnMemoryManagementMethodsOfObject(id object)
+void ms_enableMemoryManagementMethodBreakpointsOnObject(id object)
 {
     NSCParameterAssert(object);
 
@@ -141,10 +141,10 @@ void ms_stopOnMemoryManagementMethodsOfObject(id object)
         objc_registerClassPair(subclass);
 
         // Implement the memory management methods for that subclass
-        ADD_NEW_METHOD(subclass, @selector(retain), leak_retain);
-        ADD_NEW_METHOD(subclass, @selector(release), leak_release);
-        ADD_NEW_METHOD(subclass, @selector(autorelease), leak_autorelease);
-        ADD_NEW_METHOD(subclass, @selector(dealloc), leak_dealloc);
+        ADD_NEW_METHOD(subclass, @selector(retain), ms_retain);
+        ADD_NEW_METHOD(subclass, @selector(release), ms_release);
+        ADD_NEW_METHOD(subclass, @selector(autorelease), ms_autorelease);
+        ADD_NEW_METHOD(subclass, @selector(dealloc), ms_dealloc);
     }
 
     // 3. Make the object of that subclass

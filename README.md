@@ -34,7 +34,7 @@ This other tool lets you debug a leak once you know it exists. It provides a ver
 Using it is as simple as calling this method declared in `MSLeakHunterRetainBreakpointsHelper.h` with the object that you want to monitor:
 
 ```objc
-ms_stopOnMemoryManagementMethodsOfObject(object);
+ms_enableMemoryManagementMethodBreakpointsOnObject(object);
 ```
 
 * Note: `MSLeakHunterRetainBreakpointsHelper.m` has to be compiled without ARC. If your project uses ARC, refer to [this tutorial](http://maniacdev.com/2012/01/easily-get-non-arc-enabled-open-source-libraries-working-in-arc-enabled-projects/) to know how to disable ARC only for that file.

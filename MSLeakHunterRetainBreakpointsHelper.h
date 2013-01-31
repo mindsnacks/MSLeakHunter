@@ -22,10 +22,10 @@
  * @warning calling this function multiple times with the same object has an undefined behavior.
  * @note these methods are not thread safe and should be called from the main thread.
  */
-extern void ms_stopOnMemoryManagementMethodsOfObject(id object);
+extern void ms_enableMemoryManagementMethodBreakpointsOnObject(id object);
 
 /**
- * @discussion undoes what `stopOnMemoryManagementMethodsOfObject()` did, so the object will no longer
+ * @discussion undoes what `ms_enableMemoryManagementMethodBreakpointsOnObject()` did, so the object will no longer
  * make the debugger stop when those methods are called on it.
  */
 extern void ms_disableMemoryManagementMethodBreakpointsOnObject(id object);
