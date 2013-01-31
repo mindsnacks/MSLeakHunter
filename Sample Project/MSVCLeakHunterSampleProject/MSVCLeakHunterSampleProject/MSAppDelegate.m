@@ -10,15 +10,22 @@
 
 #import "MSMenuVC.h"
 
-#import "MSVCLeakHunter.h"
+#import "MSLeakHunter.h"
+#import "MSViewControllerLeakHunter.h"
+#import "MSViewLeakHunter.h"
 
 @implementation MSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // installing the MSVCLeakHunter
-    [MSVCLeakHunter install];
+#if MSLeakHunter_ENABLED
+    [MSLeakHunter installLeakHunter:[MSViewControllerLeakHunter class]];
+#endif
 
+#if MSViewLeakHunter_ENABLED
+    [MSLeakHunter installLeakHunter:[MSViewLeakHunter class]];
+#endif
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     MSMenuVC *menuVC = [[MSMenuVC alloc] init];
