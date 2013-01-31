@@ -40,6 +40,8 @@ Using it is as simple as calling this method declared in `MSLeakHunterRetainBrea
 ms_stopOnMemoryManagementMethodsOfObject(object);
 ```
 
+After this call, the debugger will stop the application whenever `-retain`, `-release`, `-autorelease`, or `-dealloc` is called on that object. If you go up the stack, you will be able to see who caused the call to those methods and hopefully that will help you debug memory managament problems in your app.
+
 * Note: `MSLeakHunterRetainBreakpointsHelper.m` has to be compiled without ARC. If your project uses ARC, refer to [this tutorial](http://maniacdev.com/2012/01/easily-get-non-arc-enabled-open-source-libraries-working-in-arc-enabled-projects/) to know how to disable ARC only for that file.
 
 # Compatibility
