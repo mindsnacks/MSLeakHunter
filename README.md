@@ -16,7 +16,7 @@ For more instructions on how to create other leak hunter objects, refer to the `
 
 # Installation
 
-- Add ```MSVCLeakHunter.{h,m}``` to the Xcode project.
+- Add ```MSLeakHunter.{h,m}``` to the Xcode project.
 - Somewhere during app initialization (e.g. the ```applicationDidFinishLaunchingWithOptions:``` method of your app delegate.), install the leak hunters that you want to enable:
 
 ```objc
