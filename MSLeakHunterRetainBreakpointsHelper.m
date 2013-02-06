@@ -71,7 +71,7 @@ static bool AmIBeingDebugged(void)
 #define DEBUGGER() do { int trapSignal = AmIBeingDebugged () ? SIGINT : SIGSTOP; __asm__ __volatile__ ("pushl %0\npushl %1\npush $0\nmovl %2, %%eax\nint $0x80\nadd $12, %%esp" : : "g" (trapSignal), "g" (getpid ()), "n" (37) : "eax", "cc"); } while (false);
 #endif
 
-#define PARENT_IMP(object, selector) (class_getMethodImplementation(class_getSuperclass([object class]), selector))
+#define PARENT_IMP(object, selector) (class_getMethodImplementation(class_getSuperclass(object_getClass(object)), selector))
 
 #define CALL_PARENT_IMP(object, selector) IMP i = PARENT_IMP(object, selector); i(object, selector);
 #define CALL_AND_RETURN_PARENT_IMP(object, selector) IMP i = PARENT_IMP(object, selector); return i(object, selector);
@@ -169,7 +169,8 @@ void ms_enableMemoryManagementMethodBreakpointsOnObject(id object)
     // 2. Doesn't exist. Creating the dynamic subclass
     if (!subclass)
     {
-        subclass = objc_allocateClassPair([object class], [subclassName cStringUsingEncoding:NSASCIIStringEncoding], 0);
+        Class parentClass = [object class];
+        subclass = objc_allocateClassPair(parentClass, [subclassName cStringUsingEncoding:NSASCIIStringEncoding], 0);
 
         NSCAssert(subclass, @"Could not create dynamic subclass for object %@", object);
 
