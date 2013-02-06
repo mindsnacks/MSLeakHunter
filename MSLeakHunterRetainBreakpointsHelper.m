@@ -128,7 +128,7 @@ static BOOL ms_objectIsOfDynamicSubclass(id object)
     return ([NSStringFromClass([object class]) rangeOfString:kDynamicSubclassPrefix].location != NSNotFound);
 }
 
-static __inline__ NSString *ms_dyanmicSubclassNameForObject(id object)
+static __inline__ NSString *ms_dynamicSubclassNameForObject(id object)
 {
     return [NSString stringWithFormat:@"%@%@", kDynamicSubclassPrefix, NSStringFromClass([object class])];
 }
@@ -140,7 +140,7 @@ void ms_enableMemoryManagementMethodBreakpointsOnObject(id object)
     // Add a dynamic subclass for that object
 
     // 1. Does the subclass already exist?
-    NSString *subclassName = ms_dyanmicSubclassNameForObject(object);
+    NSString *subclassName = ms_dynamicSubclassNameForObject(object);
     Class subclass = NSClassFromString(subclassName);
 
     // 2. Doesn't exist. Creating the dynamic subclass
