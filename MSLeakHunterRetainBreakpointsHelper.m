@@ -136,13 +136,7 @@ static __inline__ NSString *ms_dynamicSubclassNameForObject(id object)
 void ms_enableMemoryManagementMethodBreakpointsOnObject(id object)
 {
     NSCParameterAssert(object);
-
-    // Is this object already being monitored?
-    if (ms_objectIsOfDynamicSubclass(object))
-    {
-        return;
-    }
-
+    
     // Add a dynamic subclass for that object
 
     // 1. Does the subclass already exist?
