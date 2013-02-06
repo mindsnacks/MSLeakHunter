@@ -107,6 +107,14 @@ static void ms_dealloc(id self, SEL _cmd)
     CALL_PARENT_IMP(self, _cmd);
 }
 
+// We override class to make the dynamic subclass objects pose as the normal class
+static Class ms_class(id self, SEL _cmd)
+{
+    Class thisClass = object_getClass(self);
+
+    return class_getSuperclass(thisClass);
+}
+
 #pragma mark -
 
 #define kDynamicSubclassPrefix @"__MSLeak_"
@@ -145,6 +153,7 @@ void ms_enableMemoryManagementMethodBreakpointsOnObject(id object)
         ADD_NEW_METHOD(subclass, @selector(release), ms_release);
         ADD_NEW_METHOD(subclass, @selector(autorelease), ms_autorelease);
         ADD_NEW_METHOD(subclass, @selector(dealloc), ms_dealloc);
+        ADD_NEW_METHOD(subclass, @selector(class), ms_class);
     }
 
     // 3. Make the object of that subclass
