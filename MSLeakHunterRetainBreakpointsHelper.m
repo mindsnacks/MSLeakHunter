@@ -105,6 +105,10 @@ static void ms_dealloc(id self, SEL _cmd)
     DEBUGGER();
 
     CALL_PARENT_IMP(self, _cmd);
+
+    // We could remove the dynamic class with this undocumented method:
+    // objc_disposeClassPair(object_getClass(self));
+    // But we would probably need to do that only when this is the last living object of this class.
 }
 
 // We override class to make the dynamic subclass objects pose as the normal class
