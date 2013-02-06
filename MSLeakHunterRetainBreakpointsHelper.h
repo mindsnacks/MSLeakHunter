@@ -19,7 +19,6 @@
  * - autorelease
  * - dealloc
  *
- * @warning calling this function multiple times with the same object has an undefined behavior.
  * @note these methods are not thread safe and should be called from the main thread.
  */
 extern void ms_enableMemoryManagementMethodBreakpointsOnObject(id object);
