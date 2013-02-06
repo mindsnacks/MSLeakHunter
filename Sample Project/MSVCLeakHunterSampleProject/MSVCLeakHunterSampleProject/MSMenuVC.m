@@ -11,6 +11,8 @@
 #import "MSOKVC.h"
 #import "MSLeakingVC.h"
 
+#import "MSLeakHunterRetainBreakpointsHelper.h"
+
 @interface MSMenuVC ()
 
 @end
@@ -20,6 +22,8 @@
 - (void)pushViewControllerOfClass:(Class)class
 {
     UIViewController *viewController = [[class alloc] init];
+
+    ms_enableMemoryManagementMethodBreakpointsOnObject(viewController);
 
     [self.navigationController pushViewController:viewController animated:YES];
 }
