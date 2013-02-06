@@ -18,6 +18,7 @@
 #import "MSLeakHunter+Private.h"
 
 #import <objc/runtime.h>
+#import <objc/message.h>
 #import <dlfcn.h>
 
 #include <assert.h>
@@ -119,13 +120,35 @@ static Class ms_class(id self, SEL _cmd)
     return class_getSuperclass(thisClass);
 }
 
+static BOOL _ms_hasBreakpointsEnabled(id self, SEL _cmd)
+{
+    return YES;
+}
+
+static SEL _ms_hasBreakpointsEnabledSelector(void)
+{
+    return NSSelectorFromString(@"_ms_hasBreakpointsEnabled");
+}
+
 #pragma mark -
 
 #define kDynamicSubclassPrefix @"__MSLeak_"
 
 static BOOL ms_objectIsOfDynamicSubclass(id object)
 {
-    return ([NSStringFromClass([object class]) rangeOfString:kDynamicSubclassPrefix].location != NSNotFound);
+    if (!object)
+    {
+        return NO;
+    }
+    
+    SEL selector = _ms_hasBreakpointsEnabledSelector();
+ 
+    if (class_respondsToSelector(object_getClass(object), selector))
+    {
+        return ((id(*)(id, SEL))objc_msgSend)((id)object, selector);
+    }
+
+    return NO;
 }
 
 static __inline__ NSString *ms_dynamicSubclassNameForObject(id object)
@@ -158,6 +181,7 @@ void ms_enableMemoryManagementMethodBreakpointsOnObject(id object)
         ADD_NEW_METHOD(subclass, @selector(autorelease), ms_autorelease);
         ADD_NEW_METHOD(subclass, @selector(dealloc), ms_dealloc);
         ADD_NEW_METHOD(subclass, @selector(class), ms_class);
+        ADD_NEW_METHOD(subclass, _ms_hasBreakpointsEnabledSelector(), _ms_hasBreakpointsEnabled);
     }
 
     // 3. Make the object of that subclass
@@ -170,8 +194,8 @@ extern void ms_disableMemoryManagementMethodBreakpointsOnObject(id object)
 
     if (ms_objectIsOfDynamicSubclass(object))
     {
-        // Simply set the class to the parent so that it doesn't have the modified method implementations anymore.
-        object_setClass(object, class_getSuperclass([object class]));
+        // Simply set the class to the parent (the one posed as by -class) so that it doesn't have the modified method implementations
+        object_setClass(object, [object class]);
         
         // Note: The dynamic subclass will still exist.
     }
