@@ -145,7 +145,7 @@ static BOOL ms_objectIsOfDynamicSubclass(id object)
  
     if (class_respondsToSelector(object_getClass(object), selector))
     {
-        return ((id(*)(id, SEL))objc_msgSend)((id)object, selector);
+        return ((BOOL(*)(id, SEL))objc_msgSend)((id)object, selector);
     }
 
     return NO;
