@@ -44,6 +44,21 @@ After this call, the debugger will stop the application whenever `-retain`, `-re
 
 * Note: `MSLeakHunterRetainBreakpointsHelper.m` has to be compiled without ARC. If your project uses ARC, refer to [this tutorial](http://maniacdev.com/2012/01/easily-get-non-arc-enabled-open-source-libraries-working-in-arc-enabled-projects/) to know how to disable ARC only for that file.
 
+# MSZombieHunter
+
+`MSZombieHunter` works similarly to setting `NSZombieEnabled`, but you can enable it with a class method call:
+
+```objc
++[MSZombieHunter enable];
+```
+From that point on, if an object is sent a message after it's deallocated, it will throw an exception that you can catch and know inmediately when it happened. This is what it looks like:
+
+<img src="http://f.cl.ly/items/2t3e3Z451O3R2X060x3m/Screen%20Shot%202013-03-01%20at%2012.23.13%20PM.png" />
+
+**Important note**
+
+Enabling `MSZombieHunter` makes all objects stay alive when they receive the dealloc message, which increases the memory usage of the application exponentially. For this reason it's only advised to enable it on the simulator and when trying to debug an `EXC_BAD_ACCESS` crash. 
+
 # Compatibility
 
 - ```MSLeakHunter``` is compatible with **ARC** and **non-ARC** projects.

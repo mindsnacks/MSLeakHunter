@@ -13,6 +13,7 @@
 #import "MSLeakHunter.h"
 #import "MSViewControllerLeakHunter.h"
 #import "MSViewLeakHunter.h"
+#import "MSZombieHunter.h"
 
 @implementation MSAppDelegate
 
@@ -34,6 +35,13 @@
     self.window.rootViewController = navigationController;
 
     [self.window makeKeyAndVisible];
+
+    // Uncomment to try MSZombieHunter:
+    /*
+    [MSZombieHunter enable];
+    __unsafe_unretained UIView *view = [[UIView alloc] init]; // This object is deallocated right here.
+    NSLog(@"View: %@", view); // This makes it crash because view is a zombie.
+     */
 
     return YES;
 }

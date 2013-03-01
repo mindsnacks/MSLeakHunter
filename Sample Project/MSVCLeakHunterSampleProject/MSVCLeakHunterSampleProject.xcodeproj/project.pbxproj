@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D00724F916BA02AD006C55B1 /* MSViewLeakHunter.m in Sources */ = {isa = PBXBuildFile; fileRef = D00724F816BA02AD006C55B1 /* MSViewLeakHunter.m */; };
+		D00A1FE216E141EE004C06B7 /* MSZombieHunter.m in Sources */ = {isa = PBXBuildFile; fileRef = D00A1FE116E141EE004C06B7 /* MSZombieHunter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D0BB69DC16B9FBB0009A9834 /* MSLeakHunter.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BB69D616B9FBB0009A9834 /* MSLeakHunter.m */; };
 		D0BB69DD16B9FBB0009A9834 /* MSLeakHunterRetainBreakpointsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BB69D916B9FBB0009A9834 /* MSLeakHunterRetainBreakpointsHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D0BB69DE16B9FBB0009A9834 /* MSViewControllerLeakHunter.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BB69DB16B9FBB0009A9834 /* MSViewControllerLeakHunter.m */; };
@@ -31,6 +32,8 @@
 /* Begin PBXFileReference section */
 		D00724F716BA02AC006C55B1 /* MSViewLeakHunter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSViewLeakHunter.h; path = ../../../MSViewLeakHunter.h; sourceTree = "<group>"; };
 		D00724F816BA02AD006C55B1 /* MSViewLeakHunter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSViewLeakHunter.m; path = ../../../MSViewLeakHunter.m; sourceTree = "<group>"; };
+		D00A1FE016E141EE004C06B7 /* MSZombieHunter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSZombieHunter.h; path = ../../../MSZombieHunter.h; sourceTree = "<group>"; };
+		D00A1FE116E141EE004C06B7 /* MSZombieHunter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSZombieHunter.m; path = ../../../MSZombieHunter.m; sourceTree = "<group>"; };
 		D0BB69D516B9FBB0009A9834 /* MSLeakHunter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSLeakHunter.h; path = ../../../MSLeakHunter.h; sourceTree = "<group>"; };
 		D0BB69D616B9FBB0009A9834 /* MSLeakHunter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSLeakHunter.m; path = ../../../MSLeakHunter.m; sourceTree = "<group>"; };
 		D0BB69D716B9FBB0009A9834 /* MSLeakHunter+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MSLeakHunter+Private.h"; path = "../../../MSLeakHunter+Private.h"; sourceTree = "<group>"; };
@@ -88,6 +91,8 @@
 				D00724F816BA02AD006C55B1 /* MSViewLeakHunter.m */,
 				D0BB69D816B9FBB0009A9834 /* MSLeakHunterRetainBreakpointsHelper.h */,
 				D0BB69D916B9FBB0009A9834 /* MSLeakHunterRetainBreakpointsHelper.m */,
+				D00A1FE016E141EE004C06B7 /* MSZombieHunter.h */,
+				D00A1FE116E141EE004C06B7 /* MSZombieHunter.m */,
 			);
 			name = MSLeakHunter;
 			sourceTree = "<group>";
@@ -239,6 +244,7 @@
 				D0BB69DD16B9FBB0009A9834 /* MSLeakHunterRetainBreakpointsHelper.m in Sources */,
 				D0BB69DE16B9FBB0009A9834 /* MSViewControllerLeakHunter.m in Sources */,
 				D00724F916BA02AD006C55B1 /* MSViewLeakHunter.m in Sources */,
+				D00A1FE216E141EE004C06B7 /* MSZombieHunter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
