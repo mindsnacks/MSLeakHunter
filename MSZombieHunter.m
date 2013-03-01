@@ -80,7 +80,6 @@ static BOOL _enabled = NO;
     object_setClass(self, [_MSZombie class]);
 
     ((_MSZombie *)self).originalClass = currentClass;
-
 }
 
 @end
