@@ -15,10 +15,14 @@
            ARC explicitly disallows implementing retain/release/autorelease methods which must be implemented here.
 #endif
 
-#import "MSLeakHunter.h"
-#import "MSLeakHunter+Private.h"
-
 #import <objc/runtime.h>
+
+static IMP ms_swizzleMethodWithBlock(Method method, void *block)
+{
+    IMP blockImplementation = imp_implementationWithBlock(block);
+
+    return method_setImplementation(method, blockImplementation);
+}
 
 @interface _MSZombie : NSProxy
 
@@ -26,21 +30,60 @@
 
 @end
 
-@interface NSObject (MSZombieHunter)
-
-- (void)ms_zombieHunterDealloc;
-
-@end
-
 static BOOL _enabled = NO;
+static NSArray *_rootClasses = nil;
+static NSArray *_originalDeallocImps = nil;
 
 @implementation MSZombieHunter
 
++ (void)initialize
+{
+    if ([self class] == [MSZombieHunter class])
+    {
+        _rootClasses = [@[[NSObject class], [NSProxy class]] retain];
+    }
+}
+
 + (void)swizzleDealloc
 {
-    [MSLeakHunter swizzleMethod:@selector(dealloc)
-                        ofClass:[NSObject class]
-                     withMethod:@selector(ms_zombieHunterDealloc)];
+    static void *swizzledDeallocBlock = NULL;
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        swizzledDeallocBlock = [^void(id obj) {
+            Class currentClass = [obj class];
+
+            object_setClass(obj, [_MSZombie class]);
+
+            ((_MSZombie *)obj).originalClass = currentClass;
+        } copy];
+    });
+
+    NSMutableArray *deallocImplementations = [NSMutableArray array];
+
+    for (Class rootClass in _rootClasses)
+    {
+        IMP originalDeallocImp = ms_swizzleMethodWithBlock(class_getInstanceMethod(rootClass, @selector(dealloc)), swizzledDeallocBlock);
+
+        [deallocImplementations addObject:[NSValue valueWithBytes:&originalDeallocImp objCType:@encode(typeof(IMP))]];
+    }
+
+    _originalDeallocImps = [deallocImplementations copy];
+}
+
++ (void)unswizzleDealloc
+{
+    [_rootClasses enumerateObjectsUsingBlock:^(Class rootClass, NSUInteger idx, BOOL *stop) {
+        IMP originalDeallocImp = NULL;
+        [_originalDeallocImps[idx] getValue:&originalDeallocImp];
+
+        NSParameterAssert(originalDeallocImp);
+
+        method_setImplementation(class_getInstanceMethod(rootClass, @selector(dealloc)), originalDeallocImp);
+    }];
+
+    [_originalDeallocImps release];
+    _originalDeallocImps = nil;
 }
 
 + (void)enable
@@ -62,8 +105,8 @@ static BOOL _enabled = NO;
     {
         if (_enabled)
         {
-            [self swizzleDealloc];
-
+            [self unswizzleDealloc];
+            
             _enabled = NO;
         }
     }
