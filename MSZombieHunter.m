@@ -123,7 +123,6 @@ static NSArray *_originalDeallocImps = nil;
     object_setClass(self, [_MSZombie class]);
 
     ((_MSZombie *)self).originalClass = currentClass;
-
 }
 
 @end
