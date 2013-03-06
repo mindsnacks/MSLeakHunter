@@ -71,7 +71,7 @@ If this happens, it doesn't guarantee 100% that the view controller leaked. For 
 
 But it will help you discover, for example, view controllers that you push onto a navigation controller stack, and aren't deallocated when you pop them tapping on the back button.
 
-In the case where you have something like a navigation controller that is shown modally, and then the whole stack goes away when the modal is closed, you may want to tweak the value of ```kMSVCLeakHunterDisappearAndDeallocateMaxInterval``` ( *see ```MSViewControllerLeakHunter.h```* ) to give ```MSViewCOntrollerLeakHunter``` enough margin to avoid a false positive. Otherwise, you may see a log for a possible leak of the controllers at the bottom of the stack if the modal takes longer to be closed.
+In the case where you have something like a navigation controller that is shown modally, and then the whole stack goes away when the modal is closed, you may want to tweak the value of ```kMSVCLeakHunterDisappearAndDeallocateMaxInterval``` ( *see ```MSViewControllerLeakHunter.h```* ) to give ```MSViewControllerLeakHunter``` enough margin to avoid a false positive. Otherwise, you may see a log for a possible leak of the controllers at the bottom of the stack if the modal takes longer to be closed.
 
 # License
 
