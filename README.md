@@ -67,7 +67,7 @@ Enabling `MSZombieHunter` makes all objects stay alive when they receive the dea
 
 If you look at the implementation in ```MSViewControllerLeakHunter.m```, it's very naive. All it does is swizzle some methods for every UIViewController instance to discover when a view controller disappear from screen( *it gets a ```viewDidDisappear:``` call* ), but isn't deallocated after a certain period of time.
 
-If this happens, it doesn't guarantee 100% that the view controller leaked. For example, if it's inside a ```UITabBarController```, it may disapepar when you select another tab, but it's still retained by the tabbar, and it hasn't leaked.
+If this happens, it doesn't guarantee 100% that the view controller leaked. For example, if it's inside a ```UITabBarController```, it may disappear when you select another tab, but it's still retained by the tabbar, and it hasn't leaked.
 
 But it will help you discover, for example, view controllers that you push onto a navigation controller stack, and aren't deallocated when you pop them tapping on the back button.
 
