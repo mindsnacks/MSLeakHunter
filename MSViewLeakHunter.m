@@ -71,7 +71,6 @@
 
     // Call original implementation
     [self _msviewLeakHunter_dealloc];
-
 }
 
 @end
