@@ -10,6 +10,8 @@
 
 #import <objc/runtime.h>
 
+#if MSLeakHunter_ENABLED
+
 // This is hacky and relies on a "deprecated" (althought the documentation isn't updated saying so) method. What's the alternative?
 static inline void ms_dispatch_sync_safe(dispatch_queue_t dispatchQueue, dispatch_block_t block)
 {
@@ -25,8 +27,6 @@ static inline void ms_dispatch_sync_safe(dispatch_queue_t dispatchQueue, dispatc
         dispatch_sync(dispatchQueue, block);
     }
 }
-
-#if MSLeakHunter_ENABLED
 
 /**
  * @discussion this queue lets us ensure that the calls to `performSector:...` and `cancelPrevious...`
