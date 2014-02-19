@@ -33,42 +33,44 @@
 
 // Returns true if the current process is being debugged (either
 // running under the debugger or has a debugger attached post facto).
-static bool AmIBeingDebugged(void)
+__unused static bool AmIBeingDebugged(void)
 {
-	int                 junk;
-	int                 mib[4];
-	struct kinfo_proc   info;
-	size_t              size;
+    int                 junk;
+    int                 mib[4];
+    struct kinfo_proc   info;
+    size_t              size;
 
-	// Initialize the flags so that, if sysctl fails for some bizarre
-	// reason, we get a predictable result.
+    // Initialize the flags so that, if sysctl fails for some bizarre
+    // reason, we get a predictable result.
 
-	info.kp_proc.p_flag = 0;
+    info.kp_proc.p_flag = 0;
 
-	// Initialize mib, which tells sysctl the info we want, in this case
-	// we're looking for information about a specific process ID.
+    // Initialize mib, which tells sysctl the info we want, in this case
+    // we're looking for information about a specific process ID.
 
-	mib[0] = CTL_KERN;
-	mib[1] = KERN_PROC;
-	mib[2] = KERN_PROC_PID;
-	mib[3] = getpid();
+    mib[0] = CTL_KERN;
+    mib[1] = KERN_PROC;
+    mib[2] = KERN_PROC_PID;
+    mib[3] = getpid();
 
-	// Call sysctl.
+    // Call sysctl.
 
-	size = sizeof(info);
-	junk = sysctl(mib, sizeof(mib) / sizeof(*mib), &info, &size, NULL, 0);
-	assert(junk == 0);
+    size = sizeof(info);
+    junk = sysctl(mib, sizeof(mib) / sizeof(*mib), &info, &size, NULL, 0);
+    assert(junk == 0);
 
-	// We're being debugged if the P_TRACED flag is set.
+    // We're being debugged if the P_TRACED flag is set.
 
-	return ( (info.kp_proc.p_flag & P_TRACED) != 0 );
+    return ( (info.kp_proc.p_flag & P_TRACED) != 0 );
 }
 
-#if TARGET_CPU_ARM
-#define DEBUGSTOP(signal) __asm__ __volatile__ ("mov r0, %0\nmov r1, %1\nmov r12, %2\nswi 128\n" : : "r"(getpid ()), "r"(signal), "r"(37) : "r12", "r0", "r1", "cc");
-#define DEBUGGER do { int trapSignal = AmIBeingDebugged () ? SIGINT : SIGSTOP; DEBUGSTOP(trapSignal); if (trapSignal == SIGSTOP) { DEBUGSTOP (SIGINT); } } while (false);
+#if TARGET_CPU_ARM64
+  #define DEBUGGER() do {__asm__ __volatile__ ("svc 0"); } while(0)
+#elif TARGET_CPU_ARM
+  #define DEBUGSTOP(signal) __asm__ __volatile__ ("mov r0, %0\nmov r1, %1\nmov r12, %2\nswi 128\n" : : "r"(getpid ()), "r"(signal), "r"(37) : "r12", "r0", "r1", "cc");
+  #define DEBUGGER() do { if (AmIBeingDebugged()) { DEBUGSTOP(SIGINT); } } while (false);
 #else
-#define DEBUGGER() do { int trapSignal = AmIBeingDebugged () ? SIGINT : SIGSTOP; __asm__ __volatile__ ("pushl %0\npushl %1\npush $0\nmovl %2, %%eax\nint $0x80\nadd $12, %%esp" : : "g" (trapSignal), "g" (getpid ()), "n" (37) : "eax", "cc"); } while (false);
+  #define DEBUGGER() do { if (AmIBeingDebugged()) { __asm__ __volatile__ ("pushl %0\npushl %1\npush $0\nmovl %2, %%eax\nint $0x80\nadd $12, %%esp" : : "g" (SIGINT), "g" (getpid ()), "n" (37) : "eax", "cc"); } } while (false);
 #endif
 
 #define PARENT_IMP(object, selector) (class_getMethodImplementation(class_getSuperclass(object_getClass(object)), selector))
