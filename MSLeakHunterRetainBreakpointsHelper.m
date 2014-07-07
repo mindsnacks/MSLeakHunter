@@ -66,6 +66,8 @@ __unused static bool AmIBeingDebugged(void)
 
 #if TARGET_CPU_ARM64
   #define DEBUGGER() do {__asm__ __volatile__ ("svc 0"); } while(0)
+#elif TARGET_CPU_X86_64
+  #define DEBUGGER() __builtin_trap()
 #elif TARGET_CPU_ARM
   #define DEBUGSTOP(signal) __asm__ __volatile__ ("mov r0, %0\nmov r1, %1\nmov r12, %2\nswi 128\n" : : "r"(getpid ()), "r"(signal), "r"(37) : "r12", "r0", "r1", "cc");
   #define DEBUGGER() do { if (AmIBeingDebugged()) { DEBUGSTOP(SIGINT); } } while (false);
